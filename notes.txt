@@ -1,3 +1,9 @@
------------- 1.0 --------------------------------------
+---1.0
 We are using .htaccess in /app  so that we are unable to access the .app folder in the browser.
 
+---1.1
+Because of the following line of code
+RewriteRule  ^(.+)$ index.php?url=$1 [QSA,L]
+in public/.htaccess
+when pass a url param into our url we don't need knowlmvc/index.php?url=WHATEVER
+instead we can just pass it in as follows knowlmvc/WHATEVER
