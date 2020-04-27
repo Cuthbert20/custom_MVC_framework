@@ -1,3 +1,5 @@
 <?php
+    require_once "../app/bootstrap.php";
 
-echo "Test";
+    // Init Core Library ie Core Class Instance
+    $init = new Core();
