@@ -1,8 +1,8 @@
 <?php
     /*
      * App Core Class
-     * Creates URL & loads core controller
-     * URL FORMAT - /controller/method/params
+     * Creates URL & loads core controllers
+     * URL FORMAT - /controllers/method/params
      */
     class Core{
         protected $currentController = 'Pages';
@@ -17,9 +17,19 @@
 
 //            Look in controllers for first value
 //            Also we are defining the path/filename as if we were in index.php because that is where the instance of the Core class will be created.
-            if(file_exists("../app/controllers/". ucwords($url[0]) . ".php")){
-                echo "Hit";
-            }
+            if(isset($url[0]) && file_exists("../app/controllers/". ucwords($url[0]) . ".php")){
+//                if exists, set as controllers
+                    $this->currentController = ucwords($url[0]);
+//                unset 0 index
+                    unset($url[0]);
+                }
+
+
+//            Require the controllers
+            require_once "../app/controllers/" . $this->currentController . '.php';
+
+//            Instantiate controllers class
+            $this->currentController = new $this->currentController();
         }
 
         public function getUrl(){
