@@ -20,7 +20,7 @@
             if(isset($url[0]) && file_exists("../app/controllers/". ucwords($url[0]) . ".php")){
 //                if exists, set as controllers
                     $this->currentController = ucwords($url[0]);
-//                unset 0 index
+//                unset 0 index of $url
                     unset($url[0]);
                 }
 
@@ -30,6 +30,24 @@
 
 //            Instantiate controllers class
             $this->currentController = new $this->currentController();
+
+//            Check for second part of url param
+            if(isset($url[1])){
+//                Check to see if method exists in controller using method_exists function ie(very Cool).
+                if(method_exists($this->currentController, $url[1])){
+//                    if method does exists then we want to set currentMethod property to $url[1]
+                    $this->currentMethod = $url[1];
+
+//                    Unset 1 index of $url
+                    unset($url[1]);
+                }
+            }
+
+//            Get params, if no other params then params property will stay an empty array. Using Ternary Operator.
+            $this->params = $url ? array_values($url) : [];
+
+//            Call a callback with array of params
+            call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
         }
 
         public function getUrl(){
