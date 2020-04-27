@@ -3,6 +3,8 @@
      * Base Controller
      * Load the models and views
      */
+    declare(strict_types = 1);
+
     class Controller{
 //        Load Model
         public function model($model){
@@ -14,7 +16,7 @@
         }
 
 //        Load View
-        public function view($view, $data = []){
+        protected function view(string $view, $data = []){
 //            Check for view file
             if(file_exists("../app/views/" . $view . ".php")){
                 require_once "../app/views/" . $view . ".php";
