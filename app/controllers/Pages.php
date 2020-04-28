@@ -8,9 +8,13 @@
             $this->postModel = $this->model('Post');
         }
         public function index(){
-            $data = ['title'=> 'Welcome'];
+
+            $posts = $this->postModel->getPosts();
+
+            $data = ['title'=> 'Welcome', 'posts'=> $posts];
 //            we are passing in an array that we will then have access to in the view ie in the browser
             $this->view('pages/index', $data);
+
         }
         public function about(){
             $data = ['title'=> 'About Us'];
