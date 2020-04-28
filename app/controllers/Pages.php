@@ -5,13 +5,10 @@
     class Pages extends Controller {
         public function __construct()
         {
-            $this->postModel = $this->model('Post');
+
         }
         public function index(){
-
-            $posts = $this->postModel->getPosts();
-
-            $data = ['title'=> 'Welcome', 'posts'=> $posts];
+            $data = ['title'=> 'KnowlMVC'];
 //            we are passing in an array that we will then have access to in the view ie in the browser
             $this->view('pages/index', $data);
 
