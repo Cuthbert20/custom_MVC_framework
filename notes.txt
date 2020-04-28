@@ -10,3 +10,7 @@ instead we can just pass it in as follows knowlmvc/WHATEVER
 
 ---2.0
 Side obvious Note. All of our controllers in our controllers dir will be classes.
+
+---3.0
+Good convention to have models className and file name singular ie. Post. While controllers className and file name plural.
+
